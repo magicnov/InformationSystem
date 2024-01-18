@@ -4,7 +4,7 @@ namespace InformationSystem.Entities;
 
 internal class Transaction
 {
-    public static readonly string Path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "transations.csv");
+    public static readonly string Path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "transactions.csv");
     public static List<Transaction> Transactions = new(FileWorkService.Deserialization<Transaction>(Path));
 
     public Transaction(int id, string name, int amount, string date, bool profit)
