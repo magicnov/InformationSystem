@@ -56,7 +56,7 @@
 
         public static string Binding(string login)
         {
-            foreach (User user in users)
+            foreach (User user in Users)
             {
                 foreach (Staff staff in Staff.staff)
                 {

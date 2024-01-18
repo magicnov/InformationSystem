@@ -11,7 +11,6 @@ namespace InformationSystem
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             var records = csv.GetRecords<T>();
             var list = records.ToList();
-
             return list;
         }
 

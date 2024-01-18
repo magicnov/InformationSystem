@@ -4,9 +4,9 @@
     {
         public static void Start(string login, string password)
         {
-            bool found = false;
+            var found = false;
 
-            foreach (var user in User.users)
+            foreach (var user in User.Users)
             {
                 if (login == user.login & password == user.password)
                 {

@@ -1,9 +1,9 @@
 ﻿namespace InformationSystem
 {
-    class User : ICrud
+    internal class User : ICrud
     {
-        public static string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        public static List<User> users = new(FileWork.Deserialization<User>(path));
+        private static readonly string Path = AppDomain.CurrentDomain.BaseDirectory;
+        public static readonly List<User> Users = new(FileWork.Deserialization<User>(Path));
 
         public User(int id, string login, string password, string role)
         {
@@ -20,7 +20,10 @@
 
         public virtual void Create()
         {
-            int id = users.Count; string login = "login"; string password = "password"; string role = "User";
+            var id = Users.Count; 
+            var login = "login"; 
+            var password = "password";
+            var role = "User";
 
             while (true)
             {
@@ -55,15 +58,15 @@
             }
 
             User newuser = new(id, login, password, role);
-            users.Add(newuser);
-            FileWork.Serialization(users, path);
+            Users.Add(newuser);
+            FileWork.Serialization(Users, Path);
         }
 
         public virtual void Visualization()
         {
-            for (int i = 0; i < users.Count; i++)
+            for (int i = 0; i < Users.Count; i++)
             {
-                Console.WriteLine($"[{i}] ID: {users[i].id}, логин: {users[i].login}, пароль: {users[i].password}, роль: {users[i].role}");
+                Console.WriteLine($"[{i}] ID: {Users[i].id}, логин: {Users[i].login}, пароль: {Users[i].password}, роль: {Users[i].role}");
             }
         }
 
@@ -82,7 +85,7 @@
                 if (key.Key == ConsoleKey.Enter) break;
             }
 
-            foreach (User user in users)
+            foreach (User user in Users)
             {
                 if (findid == user.id)
                 {
@@ -117,7 +120,7 @@
                             break;
                         }
 
-                        FileWork.Serialization(users, path);
+                        FileWork.Serialization(Users, Path);
                     }
                 }
             }
@@ -138,28 +141,28 @@
                 if (key.Key == ConsoleKey.Enter) break;
             }
 
-            users.Remove(users[findid]);
-            FileWork.Serialization(users, path);
+            Users.Remove(Users[findid]);
+            FileWork.Serialization(Users, Path);
         }
 
         public virtual void Search()
         {
             while (true)
             {
-                Console.WriteLine($"Выберите параметр:\n 1 - индекс\n 2 - ID\n 3 - логин\n 4 - пароль\n 5 - роль\n Enter - закончить");
+                Console.WriteLine("Выберите параметр:\n 1 - индекс\n 2 - ID\n 3 - логин\n 4 - пароль\n 5 - роль\n Enter - закончить");
 
-                string choice = ChoiceInput();
+                var choice = ChoiceInput();
 
                 if (choice == "1")
                 {
                     Console.Write("Введите искомый индекс: ");
                     int id = IntInput();
 
-                    if (id >= users.Count() || id < 0)
+                    if (id >= Users.Count() || id < 0)
                     {
                         Console.WriteLine("Некорректный индекс!");
                     }
-                    else Console.WriteLine($"ID: {users[id].id}, логин: {users[id].login}, пароль: {users[id].password}, роль: {users[id].role}");
+                    else Console.WriteLine($"ID: {Users[id].id}, логин: {Users[id].login}, пароль: {Users[id].password}, роль: {Users[id].role}");
 
                 }
                 else if (choice == "2")
@@ -167,7 +170,7 @@
                     Console.Write("Введите искомый ID: ");
                     int id = IntInput();
 
-                    foreach (User user in users)
+                    foreach (User user in Users)
                     {
                         if (id == user.id)
                         {
@@ -180,7 +183,7 @@
                     Console.Write("Введите искомый логин: ");
                     string login = StringInput();
 
-                    foreach (User user in users)
+                    foreach (User user in Users)
                     {
                         if (login == user.login)
                         {
@@ -193,7 +196,7 @@
                     Console.Write("Введите искомый пароль: ");
                     string password = StringInput();
 
-                    foreach (User user in users)
+                    foreach (User user in Users)
                     {
                         if (password == user.password)
                         {
@@ -206,7 +209,7 @@
                     Console.Write("Введите искомую роль ");
                     string role = RoleChoice();
 
-                    foreach (User user in users)
+                    foreach (User user in Users)
                     {
                         if (role == user.role)
                         {
@@ -240,9 +243,9 @@
                     {
                         flag = false;
                     }
-                    if (index < 0 | index >= users.Count) flag = false;
+                    if (index < 0 | index >= Users.Count) flag = false;
 
-                    if (flag) Console.WriteLine($" ID: {users[index].id}\n Логин: {users[index].login}\n Пароль: {users[index].password}\n Роль: {users[index].role}");
+                    if (flag) Console.WriteLine($" ID: {Users[index].id}\n Логин: {Users[index].login}\n Пароль: {Users[index].password}\n Роль: {Users[index].role}");
                     else Console.WriteLine("Некорректное значение!");
                 }
                 else break;
