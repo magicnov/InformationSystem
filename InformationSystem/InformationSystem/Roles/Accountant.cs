@@ -205,12 +205,12 @@ internal class Accountant : User
         {
             Console.WriteLine($"Выберите параметр:\n 1 - индекс\n 2 - ID\n 3 - название\n 4 - сумма\n 5 - дата\n 6 - прибыль\n Enter - закончить");
 
-            string choice = ChoiceInput();
+            var choice = ChoiceInput();
 
             if (choice == "1")
             {
                 Console.Write("Введите искомый индекс: ");
-                int id = IntInput();
+                var id = IntInput();
 
                 if (id >= Product.Products.Count || id < 0)
                 {
@@ -223,9 +223,9 @@ internal class Accountant : User
             else if (choice == "2")
             {
                 Console.Write("Введите искомый ID: ");
-                int id = IntInput();
+                var id = IntInput();
 
-                foreach (Transaction transaction in Transaction.Transactions)
+                foreach (var transaction in Transaction.Transactions)
                 {
                     if (id == transaction.id)
                     {
@@ -237,9 +237,9 @@ internal class Accountant : User
             else if (choice == "3")
             {
                 Console.Write("Введите искомое название: ");
-                string name = StringInput();
+                var name = StringInput();
 
-                foreach (Transaction transaction in Transaction.Transactions)
+                foreach (var transaction in Transaction.Transactions)
                 {
                     if (name == transaction.name)
                     {
@@ -250,9 +250,9 @@ internal class Accountant : User
             else if (choice == "4")
             {
                 Console.Write("Введите искомую сумму: ");
-                int amount = IntInput();
+                var amount = IntInput();
 
-                foreach (Transaction transaction in Transaction.Transactions)
+                foreach (var transaction in Transaction.Transactions)
                 {
                     if (amount == transaction.amount)
                     {
@@ -263,9 +263,9 @@ internal class Accountant : User
             else if (choice == "5")
             {
                 Console.Write("Введите искомую дату: ");
-                string date = StringInput();
+                var date = StringInput();
 
-                foreach (Transaction transaction in Transaction.Transactions)
+                foreach (var transaction in Transaction.Transactions)
                 {
                     if (date == transaction.date)
                     {
@@ -276,8 +276,8 @@ internal class Accountant : User
             else if (choice == "6")
             {
                 Console.Write("Прибыль? 1 - Да, 2 - Нет: ");
-                string choice1 = ChoiceInput();
-                bool profit = false;
+                var choice1 = ChoiceInput();
+                var profit = false;
 
                 if (choice1 == "1") profit = true;
                 else if (choice1 == "2") profit = false;
@@ -304,9 +304,9 @@ internal class Accountant : User
         {
             Console.WriteLine($"Введите индекс для подробной информации (Enter - закончить):");
 
-            string choice = ChoiceInput();
-            int index = 0;
-            bool flag = true;
+            var choice = ChoiceInput();
+            var index = 0;
+            var flag = true;
             if (choice != "")
             {
                 try

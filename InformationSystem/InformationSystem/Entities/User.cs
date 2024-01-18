@@ -160,9 +160,9 @@ internal class User : ICrud
             if (choice == "1")
             {
                 Console.Write("Введите искомый индекс: ");
-                int id = IntInput();
+                var id = IntInput();
 
-                if (id >= Users.Count() || id < 0)
+                if (id >= Users.Count || id < 0)
                 {
                     Console.WriteLine("Некорректный индекс!");
                 }
@@ -172,9 +172,9 @@ internal class User : ICrud
             else if (choice == "2")
             {
                 Console.Write("Введите искомый ID: ");
-                int id = IntInput();
+                var id = IntInput();
 
-                foreach (User user in Users)
+                foreach (var user in Users)
                 {
                     if (id == user.id)
                     {
@@ -185,9 +185,9 @@ internal class User : ICrud
             else if (choice == "3")
             {
                 Console.Write("Введите искомый логин: ");
-                string login = StringInput();
+                var login = StringInput();
 
-                foreach (User user in Users)
+                foreach (var user in Users)
                 {
                     if (login == user.login)
                     {
@@ -198,9 +198,9 @@ internal class User : ICrud
             else if (choice == "4")
             {
                 Console.Write("Введите искомый пароль: ");
-                string password = StringInput();
+                var password = StringInput();
 
-                foreach (User user in Users)
+                foreach (var user in Users)
                 {
                     if (password == user.password)
                     {
@@ -211,9 +211,9 @@ internal class User : ICrud
             else if (choice == "5")
             {
                 Console.Write("Введите искомую роль ");
-                string role = RoleChoice();
+                var role = RoleChoice();
 
-                foreach (User user in Users)
+                foreach (var user in Users)
                 {
                     if (role == user.role)
                     {

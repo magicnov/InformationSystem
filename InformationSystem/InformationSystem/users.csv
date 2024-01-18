@@ -1,2 +1,6 @@
 id,login,password,role
 1,admin,123,Administrator
+2,hr,123,HrManager
+3,sklad,123,WarehouseManager
+4,kassir,123,Cashier
+5,buh,123,Accountant

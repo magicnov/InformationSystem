@@ -185,14 +185,14 @@ internal class WarehouseManager : User
     {
         while (true)
         {
-            Console.WriteLine($"Выберите параметр:\n 1 - индекс\n 2 - ID\n 3 - название\n 4 - цена\n 5 - кол-во на складе\n Enter - закончить");
+            Console.WriteLine("Выберите параметр:\n 1 - индекс\n 2 - ID\n 3 - название\n 4 - цена\n 5 - кол-во на складе\n Enter - закончить");
 
             string choice = ChoiceInput();
 
             if (choice == "1")
             {
                 Console.Write("Введите искомый индекс: ");
-                int id = IntInput();
+                var id = IntInput();
 
                 if (id >= Product.Products.Count || id < 0)
                 {
@@ -206,11 +206,11 @@ internal class WarehouseManager : User
                 Console.Write("Введите искомый ID: ");
                 int id = IntInput();
 
-                foreach (Product product in Product.Products)
+                foreach (var product in Product.Products)
                 {
                     if (id == product.id)
                     {
-                        Console.WriteLine($"ID: {Product.Products[id].id}, название: {Product.Products[id].name}, цена: {Product.Products[id].price}, кол-во на складе: {Product.Products[id].available}");
+                        Console.WriteLine($"ID: {product.id}, название: {product.name}, цена: {product.price}, кол-во на складе: {product.available}");
                     }
                 }
             }
@@ -219,37 +219,37 @@ internal class WarehouseManager : User
                 Console.Write("Введите искомое название: ");
                 string name = StringInput();
 
-                foreach (Product product in Product.Products)
+                foreach (var product in Product.Products)
                 {
                     if (name == product.name)
                     {
-                        Console.WriteLine($"ID: {Product.Products[id].id}, название: {Product.Products[id].name}, цена: {Product.Products[id].price}, кол-во на складе: {Product.Products[id].available}");
+                        Console.WriteLine($"ID: {product.id}, название: {product.name}, цена: {product.price}, кол-во на складе: {product.available}");
                     }
                 }
             }
             else if (choice == "4")
             {
                 Console.Write("Введите искомую цену: ");
-                int price = IntInput();
+                var price = IntInput();
 
-                foreach (Product product in Product.Products)
+                foreach (var product in Product.Products)
                 {
                     if (price == product.price)
                     {
-                        Console.WriteLine($"ID: {Product.Products[id].id}, название: {Product.Products[id].name}, цена: {Product.Products[id].price}, кол-во на складе: {Product.Products[id].available}");
+                        Console.WriteLine($"ID: {product.id}, название: {product.name}, цена: {product.price}, кол-во на складе: {product.available}");
                     }
                 }
             }
             else if (choice == "5")
             {
                 Console.Write("Введите искомое кол-во на складе: ");
-                int available = IntInput();
+                var available = IntInput();
 
-                foreach (Product product in Product.Products)
+                foreach (var product in Product.Products)
                 {
                     if (available == product.available)
                     {
-                        Console.WriteLine($"ID: {Product.Products[id].id}, название: {Product.Products[id].name}, цена: {Product.Products[id].price}, кол-во на складе: {Product.Products[id].available}");
+                        Console.WriteLine($"ID: {product.id}, название: {product.name}, цена: {product.price}, кол-во на складе: {product.available}");
                     }
                 }
             }

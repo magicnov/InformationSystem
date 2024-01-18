@@ -278,14 +278,14 @@ internal class HrManager : User
     {
         while (true)
         {
-            Console.WriteLine($"Выберите параметр:\n1 - индекс\n 2 - ID\n 3 - фамилия\n 4 - имя\n 5 - отчество\n 6 - дата рождения\n 7 - серия и номер паспорта\n 8 - должность\n 9 - зарплата\n 10 - ID пользователя\n Enter - закончить");
+            Console.WriteLine("Выберите параметр:\n1 - индекс\n 2 - ID\n 3 - фамилия\n 4 - имя\n 5 - отчество\n 6 - дата рождения\n 7 - серия и номер паспорта\n 8 - должность\n 9 - зарплата\n 10 - ID пользователя\n Enter - закончить");
 
             string choice = ChoiceInput();
 
             if (choice == "1")
             {
                 Console.Write("Введите искомый индекс: ");
-                int id = IntInput();
+                var id = IntInput();
 
                 if (id >= Staff.staff.Count || id < 0)
                 {
@@ -297,117 +297,117 @@ internal class HrManager : User
             else if (choice == "2")
             {
                 Console.Write("Введите искомый ID: ");
-                int id = IntInput();
+                var id = IntInput();
 
-                foreach (Staff staff in Staff.staff)
+                foreach (var staff in Staff.staff)
                 {
                     if (id == staff.id)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {staff.id}, фамилия: {staff.lastname}, имя: {staff.name}, отчество: {staff.middlename}, дата рождения: {staff.birthdate}, серия и номер паспорта: {staff.passport}, должность: {staff.position}, зарплата: {staff.salary}, ID пользователя: {staff.userid}");
                     }
                 }
             }
             else if (choice == "3")
             {
                 Console.Write("Введите искомую фамилию: ");
-                string surname = StringInput();
+                var lastname = StringInput();
 
                 foreach (Staff staff in Staff.staff)
                 {
-                    if (surname == staff.lastname)
+                    if (lastname == staff.lastname)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {staff.id}, фамилия: {staff.lastname}, имя: {staff.name}, отчество: {staff.middlename}, дата рождения: {staff.birthdate}, серия и номер паспорта: {staff.passport}, должность: {staff.position}, зарплата: {staff.salary}, ID пользователя: {staff.userid}");
                     }
                 }
             }
             else if (choice == "4")
             {
                 Console.Write("Введите искомое имя: ");
-                string name = StringInput();
+                var name = StringInput();
 
-                foreach (Staff staff in Staff.staff)
+                foreach (var staff in Staff.staff)
                 {
                     if (name == staff.name)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {staff.id}, фамилия: {staff.lastname}, имя: {staff.name}, отчество: {staff.middlename}, дата рождения: {staff.birthdate}, серия и номер паспорта: {staff.passport}, должность: {staff.position}, зарплата: {staff.salary}, ID пользователя: {staff.userid}");
                     }
                 }
             }
             else if (choice == "5")
             {
                 Console.Write("Введите искомое отчество: ");
-                string patronymic = StringInput();
+                var middlename = StringInput();
 
-                foreach (Staff staff in Staff.staff)
+                foreach (var staff in Staff.staff)
                 {
-                    if (patronymic == staff.middlename)
+                    if (middlename == staff.middlename)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {staff.id}, фамилия: {staff.lastname}, имя: {staff.name}, отчество: {staff.middlename}, дата рождения: {staff.birthdate}, серия и номер паспорта: {staff.passport}, должность: {staff.position}, зарплата: {staff.salary}, ID пользователя: {staff.userid}");
                     }
                 }
             }
             else if (choice == "6")
             {
                 Console.Write("Введите искомую дату рождения: ");
-                string birthdate = StringInput();
+                var birthdate = StringInput();
 
-                foreach (Staff staff in Staff.staff)
+                foreach (var staff in Staff.staff)
                 {
                     if (birthdate == staff.birthdate)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {staff.id}, фамилия: {staff.lastname}, имя: {staff.name}, отчество: {staff.middlename}, дата рождения: {staff.birthdate}, серия и номер паспорта: {staff.passport}, должность: {staff.position}, зарплата: {staff.salary}, ID пользователя: {staff.userid}");
                     }
                 }
             }
             else if (choice == "7")
             {
                 Console.Write("Введите искомые серию и номер паспорта: ");
-                string passport = StringInput();
+                var passport = StringInput();
 
-                foreach (Staff staff in Staff.staff)
+                foreach (var staff in Staff.staff)
                 {
                     if (passport == staff.passport)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {staff.id}, фамилия: {staff.lastname}, имя: {staff.name}, отчество: {staff.middlename}, дата рождения: {staff.birthdate}, серия и номер паспорта: {staff.passport}, должность: {staff.position}, зарплата: {staff.salary}, ID пользователя: {staff.userid}");
                     }
                 }
             }
             else if (choice == "8")
             {
                 Console.Write("Введите искомую должность: ");
-                string post = StringInput();
+                var position = StringInput();
 
-                foreach (Staff staff in Staff.staff)
+                foreach (var staff in Staff.staff)
                 {
-                    if (post == staff.position)
+                    if (position == staff.position)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {staff.id}, фамилия: {staff.lastname}, имя: {staff.name}, отчество: {staff.middlename}, дата рождения: {staff.birthdate}, серия и номер паспорта: {staff.passport}, должность: {staff.position}, зарплата: {staff.salary}, ID пользователя: {staff.userid}");
                     }
                 }
             }
             else if (choice == "9")
             {
                 Console.Write("Введите искомую зарплату: ");
-                int salary = IntInput();
+                var salary = IntInput();
 
-                foreach (Staff staff in Staff.staff)
+                foreach (var staff in Staff.staff)
                 {
                     if (salary == staff.salary)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {staff.id}, фамилия: {staff.lastname}, имя: {staff.name}, отчество: {staff.middlename}, дата рождения: {staff.birthdate}, серия и номер паспорта: {staff.passport}, должность: {staff.position}, зарплата: {staff.salary}, ID пользователя: {staff.userid}");
                     }
                 }
             }
             else if (choice == "10")
             {
                 Console.Write("Введите искомый ID пользователя: ");
-                int userid = IntInput();
+                var userid = IntInput();
 
-                foreach (Staff staff in Staff.staff)
+                foreach (var staff in Staff.staff)
                 {
                     if (userid == staff.userid)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {staff.id}, фамилия: {staff.lastname}, имя: {staff.name}, отчество: {staff.middlename}, дата рождения: {staff.birthdate}, серия и номер паспорта: {staff.passport}, должность: {staff.position}, зарплата: {staff.salary}, ID пользователя: {staff.userid}");
                     }
                 }
             }
