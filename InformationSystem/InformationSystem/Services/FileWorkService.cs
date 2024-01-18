@@ -1,9 +1,9 @@
-﻿using CsvHelper;
-using System.Globalization;
+﻿using System.Globalization;
+using CsvHelper;
 
-namespace InformationSystem;
+namespace InformationSystem.Services;
 
-internal static class FileWork
+internal static class FileWorkService
 {
     public static List<T> Deserialization<T>(string path)
     {

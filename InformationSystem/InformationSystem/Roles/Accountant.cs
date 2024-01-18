@@ -1,4 +1,5 @@
 ﻿using InformationSystem.Entities;
+using InformationSystem.Services;
 
 namespace InformationSystem.Roles;
 
@@ -103,7 +104,7 @@ internal class Accountant : User
 
         Transaction newtransaction = new(id, name, amount, date, profit);
         Transaction.Transactions.Add(newtransaction);
-        FileWork.Serialization(Transaction.Transactions, Transaction.Path);
+        FileWorkService.Serialization(Transaction.Transactions, Transaction.Path);
     }
 
     public override void Visualization()
@@ -173,7 +174,7 @@ internal class Accountant : User
                         break;
                     }
 
-                    FileWork.Serialization(Transaction.Transactions, Transaction.Path);
+                    FileWorkService.Serialization(Transaction.Transactions, Transaction.Path);
                 }
             }
         }
@@ -195,7 +196,7 @@ internal class Accountant : User
         }
 
         Transaction.Transactions.Remove(Transaction.Transactions[findid]);
-        FileWork.Serialization(Transaction.Transactions, Transaction.Path);
+        FileWorkService.Serialization(Transaction.Transactions, Transaction.Path);
     }
 
     public override void Search()

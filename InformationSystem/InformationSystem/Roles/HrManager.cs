@@ -1,4 +1,5 @@
 ﻿using InformationSystem.Entities;
+using InformationSystem.Services;
 
 namespace InformationSystem.Roles;
 
@@ -147,14 +148,14 @@ internal class HrManager : User
 
         Staff newstaff = new(id, surname, name, patronymic, birthdate, passport, post, salary, userid);
         Staff.staff.Add(newstaff);
-        FileWork.Serialization(Staff.staff, Staff.Path);
+        FileWorkService.Serialization(Staff.staff, Staff.Path);
     }
 
     public override void Visualization()
     {
         for (int i = 0; i < Staff.staff.Count; i++)
         {
-            Console.WriteLine($"[{i}] ID: {Staff.staff[i].id}, ФИО: {Staff.staff[i].surname} {Staff.staff[i].name} {Staff.staff[i].patronymic}, должность: {Staff.staff[i].post}, ID пользователя: {Staff.staff[i].userid}");
+            Console.WriteLine($"[{i}] ID: {Staff.staff[i].id}, ФИО: {Staff.staff[i].lastname} {Staff.staff[i].name} {Staff.staff[i].middlename}, должность: {Staff.staff[i].position}, ID пользователя: {Staff.staff[i].userid}");
         }
     }
 
@@ -179,7 +180,7 @@ internal class HrManager : User
             {
                 while (true)
                 {
-                    Console.WriteLine($"Выберите параметр:\n 1 - ID: {staff.id}\n 2 - фамилия: {staff.surname}\n 3 - имя: {staff.name}\n 4 - отчество: {staff.patronymic}\n 5 - дата рождения: {staff.birthdate}\n 6 - серия и номер паспорта: {staff.passport}\n 7 - должность: {staff.post}\n 8 - зарплата: {staff.salary}\n 9 - ID пользователя: {staff.userid}\n Enter - закончить");
+                    Console.WriteLine($"Выберите параметр:\n 1 - ID: {staff.id}\n 2 - фамилия: {staff.lastname}\n 3 - имя: {staff.name}\n 4 - отчество: {staff.middlename}\n 5 - дата рождения: {staff.birthdate}\n 6 - серия и номер паспорта: {staff.passport}\n 7 - должность: {staff.position}\n 8 - зарплата: {staff.salary}\n 9 - ID пользователя: {staff.userid}\n Enter - закончить");
 
                     string choice = ChoiceInput();
 
@@ -191,7 +192,7 @@ internal class HrManager : User
                     else if (choice == "2")
                     {
                         Console.Write("Введите фамилию: ");
-                        staff.surname = StringInput();
+                        staff.lastname = StringInput();
                     }
                     else if (choice == "3")
                     {
@@ -201,7 +202,7 @@ internal class HrManager : User
                     else if (choice == "4")
                     {
                         Console.Write("Введите отчество: ");
-                        staff.patronymic = StringInput();
+                        staff.middlename = StringInput();
                     }
                     else if (choice == "5")
                     {
@@ -216,7 +217,7 @@ internal class HrManager : User
                     else if (choice == "7")
                     {
                         Console.Write("Введите должность: ");
-                        staff.post = StringInput();
+                        staff.position = StringInput();
                     }
                     else if (choice == "8")
                     {
@@ -247,7 +248,7 @@ internal class HrManager : User
                     }
                 }
 
-                FileWork.Serialization(Staff.staff, Staff.Path);
+                FileWorkService.Serialization(Staff.staff, Staff.Path);
             }
         }
     }
@@ -270,7 +271,7 @@ internal class HrManager : User
 
 
         Staff.staff.Remove(Staff.staff[findid]);
-        FileWork.Serialization(Staff.staff, Staff.Path);
+        FileWorkService.Serialization(Staff.staff, Staff.Path);
     }
 
     public override void Search()
@@ -290,7 +291,7 @@ internal class HrManager : User
                 {
                     Console.WriteLine("Некорректный индекс!");
                 }
-                else Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].surname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].patronymic}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].post}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                else Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
 
             }
             else if (choice == "2")
@@ -302,7 +303,7 @@ internal class HrManager : User
                 {
                     if (id == staff.id)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].surname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].patronymic}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].post}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
                     }
                 }
             }
@@ -313,9 +314,9 @@ internal class HrManager : User
 
                 foreach (Staff staff in Staff.staff)
                 {
-                    if (surname == staff.surname)
+                    if (surname == staff.lastname)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].surname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].patronymic}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].post}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
                     }
                 }
             }
@@ -328,7 +329,7 @@ internal class HrManager : User
                 {
                     if (name == staff.name)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].surname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].patronymic}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].post}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
                     }
                 }
             }
@@ -339,9 +340,9 @@ internal class HrManager : User
 
                 foreach (Staff staff in Staff.staff)
                 {
-                    if (patronymic == staff.patronymic)
+                    if (patronymic == staff.middlename)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].surname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].patronymic}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].post}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
                     }
                 }
             }
@@ -354,7 +355,7 @@ internal class HrManager : User
                 {
                     if (birthdate == staff.birthdate)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].surname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].patronymic}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].post}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
                     }
                 }
             }
@@ -367,7 +368,7 @@ internal class HrManager : User
                 {
                     if (passport == staff.passport)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].surname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].patronymic}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].post}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
                     }
                 }
             }
@@ -378,9 +379,9 @@ internal class HrManager : User
 
                 foreach (Staff staff in Staff.staff)
                 {
-                    if (post == staff.post)
+                    if (post == staff.position)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].surname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].patronymic}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].post}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
                     }
                 }
             }
@@ -393,7 +394,7 @@ internal class HrManager : User
                 {
                     if (salary == staff.salary)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].surname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].patronymic}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].post}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
                     }
                 }
             }
@@ -406,7 +407,7 @@ internal class HrManager : User
                 {
                     if (userid == staff.userid)
                     {
-                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].surname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].patronymic}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].post}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
+                        Console.WriteLine($"ID: {Staff.staff[id].id}, фамилия: {Staff.staff[id].lastname}, имя: {Staff.staff[id].name}, отчество: {Staff.staff[id].middlename}, дата рождения: {Staff.staff[id].birthdate}, серия и номер паспорта: {Staff.staff[id].passport}, должность: {Staff.staff[id].position}, зарплата: {Staff.staff[id].salary}, ID пользователя: {Staff.staff[id].userid}");
                     }
                 }
             }
@@ -439,7 +440,7 @@ internal class HrManager : User
                 }
                 if (index < 0 | index >= Staff.staff.Count) flag = false;
 
-                if (flag) Console.WriteLine($" ID: {Staff.staff[index].id}\n Фамилия: {Staff.staff[index].surname}\n Имя: {Staff.staff[id].name}\n Отчество: {Staff.staff[id].patronymic}\n Дата рождения: {Staff.staff[id].birthdate}\n Серия и номер паспорта: {Staff.staff[id].passport}\n Должность: {Staff.staff[id].post}\n Зарплата: {Staff.staff[id].salary}\n ID пользователя: {Staff.staff[id].userid}");
+                if (flag) Console.WriteLine($" ID: {Staff.staff[index].id}\n Фамилия: {Staff.staff[index].lastname}\n Имя: {Staff.staff[id].name}\n Отчество: {Staff.staff[id].middlename}\n Дата рождения: {Staff.staff[id].birthdate}\n Серия и номер паспорта: {Staff.staff[id].passport}\n Должность: {Staff.staff[id].position}\n Зарплата: {Staff.staff[id].salary}\n ID пользователя: {Staff.staff[id].userid}");
                 else Console.WriteLine("Некорректное значение!");
             }
             else break;

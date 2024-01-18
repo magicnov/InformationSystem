@@ -1,11 +1,13 @@
 ﻿using InformationSystem.Interfaces;
+using InformationSystem.Roles;
+using InformationSystem.Services;
 
 namespace InformationSystem.Entities;
 
 internal class User : ICrud
 {
-    private static readonly string Path = AppDomain.CurrentDomain.BaseDirectory;
-    public static List<User> Users = new(FileWork.Deserialization<User>(Path));
+    private static readonly string Path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "users.csv");
+    public static List<User> Users = new(FileWorkService.Deserialization<User>(Path));
 
     public User(int id, string login, string password, string role)
     {
@@ -61,7 +63,7 @@ internal class User : ICrud
 
         User newuser = new(id, login, password, role);
         Users.Add(newuser);
-        FileWork.Serialization(Users, Path);
+        FileWorkService.Serialization(Users, Path);
     }
 
     public virtual void Visualization()
@@ -122,7 +124,7 @@ internal class User : ICrud
                         break;
                     }
 
-                    FileWork.Serialization(Users, Path);
+                    FileWorkService.Serialization(Users, Path);
                 }
             }
         }
@@ -144,7 +146,7 @@ internal class User : ICrud
         }
 
         Users.Remove(Users[findid]);
-        FileWork.Serialization(Users, Path);
+        FileWorkService.Serialization(Users, Path);
     }
 
     public virtual void Search()
@@ -232,9 +234,9 @@ internal class User : ICrud
         {
             Console.WriteLine($"Введите индекс для подробной информации (Enter - закончить):");
 
-            string choice = ChoiceInput();
-            int index = 0;
-            bool flag = true;
+            var choice = ChoiceInput();
+            var index = 0;
+            var flag = true;
             if (choice != "")
             {
                 try
@@ -285,34 +287,31 @@ internal class User : ICrud
 
     protected static string RoleChoice()
     {
-        Console.Write("(0 - Administrator, 1 - HR, 2 - Warehouse manager, 3 - Cashier, 4 - Accountant): ");
-        int result = IntInput();
-        string role = "User";
+        Console.Write("(0 - Administrator, 1 - HrManager, 2 - WarehouseManager, 3 - Cashier, 4 - Accountant): ");
+        var result = IntInput();
+        string role;
 
-        if (result == 0)
+        switch (result)
         {
-            role = "Administrator";
-        }
-        else if (result == 1)
-        {
-            role = "HR_Manager";
-        }
-        else if (result == 2)
-        {
-            role = "Warehouse_Manager";
-        }
-        else if (result == 3)
-        {
-            role = "Cashier";
-        }
-        else if (result == 4)
-        {
-            role = "Accountant";
-        }
-        else
-        {
-            Console.WriteLine("Некорректное значение!");
-            role = RoleChoice();
+            case 0:
+                role = nameof(Administrator);
+                break;
+            case 1:
+                role = nameof(HrManager);
+                break;
+            case 2:
+                role = nameof(WarehouseManager);
+                break;
+            case 3:
+                role = nameof(Cashier);
+                break;
+            case 4:
+                role = nameof(Accountant);
+                break;
+            default:
+                Console.WriteLine("Некорректное значение!");
+                role = RoleChoice();
+                break;
         }
 
         return role;

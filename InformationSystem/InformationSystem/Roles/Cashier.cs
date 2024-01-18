@@ -1,4 +1,5 @@
 ﻿using InformationSystem.Entities;
+using InformationSystem.Services;
 
 namespace InformationSystem.Roles;
 
@@ -85,7 +86,7 @@ internal class Cashier : User
                         Product.Products[index].available -= selected;
                         Transaction newtransaction = new(Transaction.Transactions.Count, Product.Products[index].name, Product.Products[index].price * selected, DateTime.Now.ToString(), true);
                         Transaction.Transactions.Add(newtransaction);
-                        FileWork.Serialization(Transaction.Transactions, Transaction.Path);
+                        FileWorkService.Serialization(Transaction.Transactions, Transaction.Path);
                     }
                 }
                 else Console.WriteLine("Некорректное значение!");

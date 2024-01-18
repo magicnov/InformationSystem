@@ -15,23 +15,23 @@ internal class AuthorizationService
             {
                 login = HrManager.Binding(login);
 
-                if (user.role == "Administrator")
+                if (user.role == nameof(Administrator))
                 {
                     Administrator admin = new(user.id, login, password, user.role);
                 }
-                else if (user.role == "HR_manager")
+                else if (user.role == nameof(HrManager))
                 {
                     HrManager hr = new(user.id, login, password, user.role);
                 }
-                else if (user.role == "Warehouse_Manager")
+                else if (user.role == nameof(WarehouseManager))
                 {
                     WarehouseManager wh = new(user.id, login, password, user.role);
                 }
-                else if (user.role == "Cashier")
+                else if (user.role == nameof(Cashier))
                 {
                     Cashier cs = new(user.id, login, password, user.role);
                 }
-                else if (user.role == "Accountant")
+                else if (user.role == nameof(Accountant))
                 {
                     Accountant ac = new(user.id, login, password, user.role);
                 }

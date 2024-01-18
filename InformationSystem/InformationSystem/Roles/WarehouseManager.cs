@@ -1,4 +1,5 @@
 ﻿using InformationSystem.Entities;
+using InformationSystem.Services;
 
 namespace InformationSystem.Roles;
 
@@ -94,7 +95,7 @@ internal class WarehouseManager : User
 
         Product newproduct = new(id, name, price, available);
         Product.Products.Add(newproduct);
-        FileWork.Serialization(Product.Products, Product.Path);
+        FileWorkService.Serialization(Product.Products, Product.Path);
     }
 
     public override void Visualization()
@@ -155,7 +156,7 @@ internal class WarehouseManager : User
                         break;
                     }
 
-                    FileWork.Serialization(Product.Products, Product.Path);
+                    FileWorkService.Serialization(Product.Products, Product.Path);
                 }
             }
         }
@@ -177,7 +178,7 @@ internal class WarehouseManager : User
         }
 
         Product.Products.Remove(Product.Products[findid]);
-        FileWork.Serialization(Product.Products, Product.Path);
+        FileWorkService.Serialization(Product.Products, Product.Path);
     }
 
     public override void Search()

@@ -1,9 +1,11 @@
-﻿namespace InformationSystem.Entities;
+﻿using InformationSystem.Services;
+
+namespace InformationSystem.Entities;
 
 internal class Transaction
 {
-    public static readonly string Path = AppDomain.CurrentDomain.BaseDirectory;
-    public static List<Transaction> Transactions = new(FileWork.Deserialization<Transaction>(Path));
+    public static readonly string Path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "transations.csv");
+    public static List<Transaction> Transactions = new(FileWorkService.Deserialization<Transaction>(Path));
 
     public Transaction(int id, string name, int amount, string date, bool profit)
     {

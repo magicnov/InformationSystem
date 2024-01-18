@@ -1,9 +1,11 @@
-﻿namespace InformationSystem.Entities;
+﻿using InformationSystem.Services;
+
+namespace InformationSystem.Entities;
 
 internal class Product
 {
-    public static readonly string Path = AppDomain.CurrentDomain.BaseDirectory;
-    public static List<Product> Products = new(FileWork.Deserialization<Product>(Path));
+    public static readonly string Path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "products.csv");
+    public static List<Product> Products = new(FileWorkService.Deserialization<Product>(Path));
 
     public Product(int id, string name, int price, int available)
     {
