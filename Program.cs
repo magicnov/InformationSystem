@@ -1,50 +1,51 @@
-﻿namespace InformationSystem
+﻿using InformationSystem.Services;
+
+namespace InformationSystem;
+
+internal class Program
 {
-    internal class Program
+    static void Main()
     {
-        static void Main()
+        Start("");
+    }
+
+    public static void Start(string message)
+    {
+        Console.Clear();
+        if (!string.IsNullOrWhiteSpace(message))
         {
-            Start("");
+            Console.WriteLine("   " + message);
         }
-
-        public static void Start(string message)
-        {
-            Console.Clear();
-            if (!string.IsNullOrWhiteSpace(message))
-            {
-                Console.WriteLine("   " + message);
-            }
             
-            Console.WriteLine(new string('-', 30));
-            Console.WriteLine("Выберите операцию:\n1 - Авторизоваться");
+        Console.WriteLine(new string('-', 30));
+        Console.WriteLine("Выберите операцию:\n1 - Авторизоваться");
 
-            var choice = Console.ReadLine();
+        var choice = Console.ReadLine();
 
-            if (choice == "1")
+        if (choice == "1")
+        {
+            Console.Write("Введите логин: ");
+            var login = Console.ReadLine();
+
+            Console.Write("Введите пароль: ");
+            var password = string.Empty;
+
+            while (true)
             {
-                Console.Write("Введите логин: ");
-                var login = Console.ReadLine();
+                var key = Console.ReadKey(true);
 
-                Console.Write("Введите пароль: ");
-                var password = string.Empty;
+                if (key.Key == ConsoleKey.Enter) break;
 
-                while (true)
-                {
-                    var key = Console.ReadKey(true);
+                Console.Write("*");
 
-                    if (key.Key == ConsoleKey.Enter) break;
-
-                    Console.Write("*");
-
-                    password += key.KeyChar;
-                }
-
-                Authorization.Start(login, password);
+                password += key.KeyChar;
             }
-            else
-            {
-                Start("Неправильно введено значение операции!");
-            }
+
+            AuthorizationService.Start(login, password);
+        }
+        else
+        {
+            Start("Неправильно введено значение операции!");
         }
     }
 }
